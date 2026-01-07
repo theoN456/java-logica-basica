@@ -1,2 +1,3 @@
-# java-logica-basica
-Exercícios básicos de lógica e POO em Java
+# Java Calculator (Logic & OOP).
+A simple calculator to practice Object-Oriented Programming.
+
