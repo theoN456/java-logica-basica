@@ -4,55 +4,73 @@ public class Calculadora {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
+        int opcao = 0;
+
         System.out.println("--- Calculadora ---");
-
         try {
-            System.out.println("1 - Soma");
-            System.out.println("2 - Subtração");
-            System.out.println("3 - Multiplicação");
-            System.out.println("4 - Divisão");
-            int opcao = input.nextInt();
 
-            System.out.println("Operação escolhida: " + opcao);
+            while (opcao != 5) {
+                System.out.println("1 - Soma");
+                System.out.println("2 - Subtração");
+                System.out.println("3 - Multiplicação");
+                System.out.println("4 - Divisão");
+                System.out.println("5 - Sair");
 
-            if (opcao > 4 || opcao <= 0){
-                throw new IllegalArgumentException("Operação não existe, escolha outro!");
-            }
+                opcao = input.nextInt();
 
-            System.out.println("Digite o primeiro número: ");
-            double n1 = input.nextDouble();
+                System.out.println("Opeção escolhida: " + opcao);
 
-            System.out.println("Digite o segundo número: ");
-            double n2 = input.nextDouble();
+                if (opcao >= 1 && opcao <= 4) {
 
-            OperacoesNumericas result = new OperacoesNumericas(n1, n2);
+                    System.out.print("Digite o primeiro número: ");
+                    double primeiroNum = input.nextDouble();
 
-            switch (opcao) {
-                case 1:
-                    System.out.println("Resultado da soma: " + result.soma());
-                    break;
+                    System.out.print("Digite o segundo número: ");
+                    double segundoNum = input.nextDouble();
 
-                case 2:
-                    System.out.println("Resultado da Subtração: " + result.subtrair());
-                    break;
+                    ValoresNumericos numeroDigitado = new ValoresNumericos(primeiroNum, segundoNum);
 
-                case 3:
-                    System.out.println("Resultado da multiplicação: " + result.multiplicar());
-                    break;
+                    switch (opcao) {
 
-                case 4:
-                    System.out.println("Resultado da divição: " + result.dividir());
-                    break;
+                        case 1:
+                            System.out.println("Resultado da Soma: " + numeroDigitado.somar());
+                            break;
+
+                        case 2:
+                            System.out.println("Resultado da Subtração: " + numeroDigitado.subtrair());
+                            break;
+
+                        case 3:
+                            System.out.println("Resultado da Multiplicação: " + numeroDigitado.multiplicar());
+                            break;
+
+                        case 4:
+                            System.out.println("Resultado da Divisão: " + numeroDigitado.dividir());
+                            break;
+                    }
+                }
+
+                else if (opcao == 5) {
+                    System.out.println("Encerrando calculadora...");
+                }
+
+                else {
+                    System.out.println("Opção inválida!");
+                }
             }
         }
-        catch (IllegalArgumentException OperacaoNaoExiste) {
-            System.out.println(OperacaoNaoExiste.getMessage());
+
+        catch (ArithmeticException zero) {
+            System.out.println(zero.getMessage());
         }
-        catch (ArithmeticException valorNaoDivisivel) {
-            System.out.println(valorNaoDivisivel.getMessage());
+        catch (IllegalArgumentException numero) {
+            System.out.println(numero.getMessage());
         }
         catch (Exception e) {
-            System.out.println("Apenas números, refaça de novo!");
+            System.out.println("Erro: Apenas números!");
+        }
+        finally {
+            input.close();
         }
     }
 }
