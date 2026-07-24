@@ -33,7 +33,7 @@ public class Calculadora {
                     switch (opcao) {
 
                         case 1:
-                            System.out.println("Resultado da Soma: " + numeroDigitado.somar());
+                            System.out.println("Resultado da Soma: " + numeroDigitado.soma());
                             break;
 
                         case 2:
